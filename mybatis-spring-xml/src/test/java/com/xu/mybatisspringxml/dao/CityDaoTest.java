@@ -4,6 +4,8 @@ import com.xu.mybatisspringxml.pojo.City;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,7 +21,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityDaoTest {
-
+    Logger log = LoggerFactory.getLogger(Test.class);
     @Autowired
     private CityDao cityDao;
 
@@ -37,6 +39,7 @@ public class CityDaoTest {
             list.add(city);
         }
         int i = cityDao.insertCitys(list);
+        log.info("i",i);
         Assertions.assertThat(i).isEqualTo(99);
     }
 
