@@ -40,7 +40,7 @@ public class CityDaoTest {
     @Test
     public void insertCitys() {
         List<City> list = new ArrayList<>(99);
-        for (int i = 0; i < 9999; i++) {
+        for (int i = 0; i < 1; i++) {
             City city = new City();
             city.setName("SZ");
             city.setCountry("ZH");
@@ -67,12 +67,12 @@ public class CityDaoTest {
     public void selectCitys() {
         long l = System.currentTimeMillis();
         //分页
-        Page<Object> objects = PageHelper.startPage(1, 15);
+        //   Page<Object> objects = PageHelper.startPage(1, 15);
         City city = new City();
         city.setName("SZ");
         RowBounds rowBounds = new RowBounds(1, 15);
-        // List<City> cities = cityDao.selectCitys(city, rowBounds);
-        List<City> cities = cityDao.selectCitysNoPage(city);
+        List<City> cities = cityDao.selectCitys(city, rowBounds);
+        //List<City> cities = cityDao.selectCitysNoPage(city);
         PageInfo<City> pageInfo = new PageInfo(cities, 7);
         long l1 = System.currentTimeMillis();
         long ll = l1 - l;
