@@ -30,5 +30,9 @@ public class CityDao {
         return sqlSession.selectList("selectCitys", city, rowBounds);
     }
 
+    public List<City> selectCitysNoPage(@Param("city") City city) {
+        return sqlSession.selectList("selectCitys");
+    }
+
     ;
 }
