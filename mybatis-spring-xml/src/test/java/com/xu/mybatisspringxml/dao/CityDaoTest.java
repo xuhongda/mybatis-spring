@@ -1,6 +1,10 @@
 package com.xu.mybatisspringxml.dao;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xu.mybatisspringxml.pojo.City;
+import org.apache.ibatis.session.RowBounds;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +34,15 @@ public class CityDaoTest {
 
     }
 
+    /**
+     * 批量插入
+     */
     @Test
     public void insertCitys() {
         List<City> list = new ArrayList<>(99);
-        for (int i = 0;i<99;i++){
+        for (int i = 0; i<99; i++){
             City city = new City();
+            city.setName("SZ");
             city.setCountry("ZH");
             list.add(city);
         }
@@ -57,5 +65,13 @@ public class CityDaoTest {
 
     @Test
     public void selectCitys() {
+        //分页
+        Page<Object> objects = PageHelper.startPage(1, 5);
+        City city = new City();
+        city.setName("SZ");
+        RowBounds rowBounds = new RowBounds(1, 5);
+        List<City> cities = cityDao.selectCitys(city, rowBounds);
+        PageInfo<City> pageInfo = new PageInfo(cities, 7);
+        System.out.println(cities.size());
     }
 }

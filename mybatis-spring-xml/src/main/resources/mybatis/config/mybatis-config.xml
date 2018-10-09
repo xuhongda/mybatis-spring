@@ -3,5 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <setting name="defaultExecutorType" value="BATCH"/>
+        <setting name="defaultStatementTimeout" value="180"/>
+    </settings>
+    <!--<plugins>
+        <plugin
+                interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+            <property name="dialectClass"
+                      value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect" />
+        </plugin>
+    </plugins>-->
+    <!--配置分页细信息 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--使分页合理化-->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>

@@ -4,6 +4,7 @@ import com.xu.mybatisspringxml.pojo.City;
 import com.xu.mybatisspringxml.pojo.CityExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface CityMapper {
     long countByExample(CityExample example);
@@ -27,4 +28,6 @@ public interface CityMapper {
     int updateByPrimaryKeySelective(City record);
 
     int updateByPrimaryKey(City record);
+
+    List<City> selectCityss(@Param("city") City city, RowBounds rowBounds);
 }

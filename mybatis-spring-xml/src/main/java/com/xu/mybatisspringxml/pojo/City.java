@@ -1,6 +1,8 @@
 package com.xu.mybatisspringxml.pojo;
 
-public class City {
+import com.xu.mybatisspringxml.basepojo.BasePageBean;
+
+public class City extends BasePageBean {
     private Integer id;
 
     private String name;

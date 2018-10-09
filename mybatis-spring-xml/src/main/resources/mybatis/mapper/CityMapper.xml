@@ -88,6 +88,35 @@
     from city
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectCitys" resultMap="BaseResultMap" parameterType="com.xu.mybatisspringxml.pojo.City">
+    select
+    <include refid="Base_Column_List"/>
+    from city
+    <where>
+      <if test="id != null">
+        id = #{id}
+      </if>
+      <if test="name != null">
+        name = #{name}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectCityss" resultMap="BaseResultMap" parameterType="com.xu.mybatisspringxml.pojo.City">
+    select
+    <include refid="Base_Column_List"/>
+    from city
+    <where>
+      <if test="city.id != null">
+        id = #{city.id}
+      </if>
+      <if test="city.name != null">
+        name = #{city.name}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from city
     where id = #{id,jdbcType=INTEGER}
