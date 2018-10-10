@@ -144,6 +144,11 @@
       </if>
     </trim>
   </insert>
+  <!-- return sqlSession.selectList("selectCitis",city,rowBounds);-->
+  <select id="selectCitis" resultMap="BaseResultMap">
+    select * from city
+  </select>
+
   <select id="countByExample" parameterType="com.xu.mybatisspringxml.pojo.CityExample" resultType="java.lang.Long">
     select count(*) from city
     <if test="_parameter != null">

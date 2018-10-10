@@ -1,6 +1,7 @@
 package com.xu.mybatisspringxml.dao;
 
 import com.xu.mybatisspringxml.pojo.City;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,10 @@ public class CityDao {
 
     public int insertCitys(List<City> cities){
        return sqlSession.insert("insertCitys",cities);
+    }
+
+
+    public List<City> selectCitis(City city, RowBounds rowBounds){
+        return sqlSession.selectList("selectCitis",city,rowBounds);
     }
 }

@@ -1,6 +1,7 @@
 package com.xu.mybatisspringxml.dao;
 
 import com.xu.mybatisspringxml.pojo.City;
+import org.apache.ibatis.session.RowBounds;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityDaoTest {
-    Logger log = LoggerFactory.getLogger(Test.class);
+    private Logger log = LoggerFactory.getLogger(Test.class);
     @Autowired
     private CityDao cityDao;
 
