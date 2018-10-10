@@ -1,11 +1,15 @@
 package com.xu.mybatisspringxml.mapper;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xu.mybatisspringxml.pojo.City;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -65,5 +69,17 @@ public class CityMapperTest {
 
     @Test
     public void updateByPrimaryKey() {
+    }
+
+    @Test
+    public void selectCitys() {
+        City city = new City();
+        city.setName("SZ");
+        RowBounds rowBounds = new RowBounds(1, 5);
+        List<City> cities = cityMapper.selectCityss(city, rowBounds);
+        PageList<City> pageList = (PageList<City>) cities;
+        //总数量
+        System.out.println(pageList.getPaginator().getTotalCount());
+        System.out.println(cities.size());
     }
 }

@@ -1,5 +1,8 @@
 package com.xu.mybatisspringxml.dao;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xu.mybatisspringxml.pojo.City;
 import org.apache.ibatis.session.RowBounds;
 import org.assertj.core.api.Assertions;
@@ -31,17 +34,21 @@ public class CityDaoTest {
 
     }
 
+    /**
+     * 批量插入
+     */
     @Test
     public void insertCitys() {
         List<City> list = new ArrayList<>(99);
-        for (int i = 0;i<99;i++){
+        for (int i = 0; i < 1; i++) {
             City city = new City();
+            city.setName("SZ");
             city.setCountry("ZH");
             list.add(city);
         }
         int i = cityDao.insertCitys(list);
         log.info("i",i);
-        Assertions.assertThat(i).isEqualTo(99);
+        //   Assertions.assertThat(i).isEqualTo(9999);
     }
 
     @Test
@@ -58,5 +65,19 @@ public class CityDaoTest {
 
     @Test
     public void selectCitys() {
+        long l = System.currentTimeMillis();
+        //分页
+        //   Page<Object> objects = PageHelper.startPage(1, 15);
+        City city = new City();
+        city.setName("SZ");
+        RowBounds rowBounds = new RowBounds(1, 15);
+        List<City> cities = cityDao.selectCitys(city, rowBounds);
+        //List<City> cities = cityDao.selectCitysNoPage(city);
+        PageInfo<City> pageInfo = new PageInfo(cities, 7);
+        long l1 = System.currentTimeMillis();
+        long ll = l1 - l;
+        System.out.println("time===>>" + ll);
+        System.out.println(cities.size());
+
     }
 }

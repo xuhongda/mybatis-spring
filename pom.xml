@@ -38,6 +38,10 @@
         </dependencies>
     </dependencyManagement>
 
+    <modules>
+        <module>mybatis-spring-xml</module>
+    </modules>
+
 
     <build>
         <plugins>
