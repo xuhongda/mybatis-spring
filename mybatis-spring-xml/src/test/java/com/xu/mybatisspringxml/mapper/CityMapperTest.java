@@ -2,6 +2,7 @@ package com.xu.mybatisspringxml.mapper;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xu.mybatisspringxml.pojo.City;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Slf4j
 public class CityMapperTest {
     @Autowired
     private CityMapper cityMapper;
@@ -81,5 +83,12 @@ public class CityMapperTest {
         //总数量
         System.out.println(pageList.getPaginator().getTotalCount());
         System.out.println(cities.size());
+    }
+
+    @Test
+    public void testResultType() {
+
+        City city = cityMapper.getInfo(6);
+        log.info("city->{}", city);
     }
 }

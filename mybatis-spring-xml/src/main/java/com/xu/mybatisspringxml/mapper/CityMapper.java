@@ -30,4 +30,12 @@ public interface CityMapper {
     int updateByPrimaryKey(City record);
 
     List<City> selectCityss(@Param("city") City city, RowBounds rowBounds);
+
+    /**
+     * 自定义测试 resultType
+     *
+     * @param i
+     * @return
+     */
+    City getInfo(int i);
 }

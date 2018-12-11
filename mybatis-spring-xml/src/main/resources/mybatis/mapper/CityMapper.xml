@@ -236,4 +236,13 @@
       country = #{country,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--这是一条分割线-->
+  <!--    City getInfo(int i);
+-->
+  <select id="getInfo" resultType="com.xu.mybatisspringxml.pojo.City">
+    select *
+    from city
+    where id = #{i}
+  </select>
 </mapper>
