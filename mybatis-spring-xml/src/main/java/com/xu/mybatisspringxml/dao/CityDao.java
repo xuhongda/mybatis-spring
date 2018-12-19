@@ -34,5 +34,5 @@ public class CityDao {
         return sqlSession.selectList("selectCitys");
     }
 
-    ;
+
 }

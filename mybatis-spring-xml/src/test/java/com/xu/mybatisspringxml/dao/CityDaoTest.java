@@ -25,7 +25,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityDaoTest {
-    private Logger log = LoggerFactory.getLogger(Test.class);
+    Logger log = LoggerFactory.getLogger(Test.class);
     @Autowired
     private CityDao cityDao;
 
@@ -67,17 +67,16 @@ public class CityDaoTest {
     public void selectCitys() {
         long l = System.currentTimeMillis();
         //分页
-        Page<Object> objects = PageHelper.startPage(1, 15);
+        //Page<Object> objects = PageHelper.startPage(1, 15);
         City city = new City();
         city.setName("SZ");
-       // RowBounds rowBounds = new RowBounds(1, 15);
-        //List<City> cities = cityDao.selectCitys(city, rowBounds);
-        List<City> cities = cityDao.selectCitysNoPage(city);
+        RowBounds rowBounds = new RowBounds(1, 15);
+        List<City> cities = cityDao.selectCitys(city, rowBounds);
+        //List<City> cities = cityDao.selectCitysNoPage(city);
         PageInfo<City> pageInfo = new PageInfo(cities, 7);
         long l1 = System.currentTimeMillis();
         long ll = l1 - l;
         System.out.println("time===>>" + ll);
         System.out.println(cities.size());
-
     }
 }

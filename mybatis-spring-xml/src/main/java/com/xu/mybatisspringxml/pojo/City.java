@@ -1,11 +1,13 @@
 package com.xu.mybatisspringxml.pojo;
 
 import com.xu.mybatisspringxml.basepojo.BasePageBean;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
 @ToString
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class City extends BasePageBean {
     private Integer id;
 
@@ -15,6 +17,5 @@ public class City extends BasePageBean {
 
     private String country;
 
-    private String xx;
 
 }

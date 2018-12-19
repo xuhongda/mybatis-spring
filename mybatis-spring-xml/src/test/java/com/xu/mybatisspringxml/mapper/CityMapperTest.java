@@ -2,6 +2,7 @@ package com.xu.mybatisspringxml.mapper;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xu.mybatisspringxml.pojo.City;
+import com.xu.mybatisspringxml.pojo.CityVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -90,5 +92,26 @@ public class CityMapperTest {
 
         City city = cityMapper.getInfo(6);
         log.info("city->{}", city);
+    }
+
+    /**
+     * 复杂情况下 type 无法映射
+     */
+    @Test
+    public void testResultType2() {
+
+        List<CityVO> cityVOS = cityMapper.getInfoByType();
+        cityVOS.forEach(a -> log.info(a.toString()));
+    }
+
+    /**
+     * 复杂情况下 Map 的应用
+     */
+    @Test
+    public void testMap() {
+        List<CityVO> cities = cityMapper.getInfoByMap();
+        cities.forEach(System.out::println);
+        String country = cities.get(0).getCountry();
+        Assert.isTrue(country != null, country);
     }
 }

@@ -3,6 +3,8 @@ package com.xu.mybatisspringxml.mapper;
 import com.xu.mybatisspringxml.pojo.City;
 import com.xu.mybatisspringxml.pojo.CityExample;
 import java.util.List;
+
+import com.xu.mybatisspringxml.pojo.CityVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -38,4 +40,8 @@ public interface CityMapper {
      * @return
      */
     City getInfo(int i);
+
+    List<CityVO> getInfoByMap();
+
+    List<CityVO> getInfoByType();
 }

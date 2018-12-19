@@ -7,6 +7,15 @@
     <result column="state" jdbcType="VARCHAR" property="state" />
     <result column="country" jdbcType="VARCHAR" property="country" />
   </resultMap>
+
+  <resultMap id="MyResultMap" type="com.xu.mybatisspringxml.pojo.CityVO">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="state" jdbcType="VARCHAR" property="state"/>
+    <result column="country" jdbcType="VARCHAR" property="country"/>
+    <result column="count" jdbcType="VARCHAR" property="count"/>
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -244,5 +253,23 @@
     select *
     from city
     where id = #{i}
+  </select>
+
+  <!--    List<CityVO> getInfoByType();
+-->
+  <select id="getInfoByMap" resultType="com.xu.mybatisspringxml.pojo.CityVO">
+    select c.*,cc.nums as count
+    from (select * from mybatis_springboot.city) c
+            ,
+         (select count(id) as nums from mybatis_springboot.city) cc
+  </select>
+
+  <!--    List<City> getInfoByMap();
+-->
+  <select id="getInfoByMap" resultMap="MyResultMap">
+    select c.*,cc.nums as count
+    from (select * from mybatis_springboot.city) c
+            ,
+         (select count(id) as nums from mybatis_springboot.city) cc
   </select>
 </mapper>
