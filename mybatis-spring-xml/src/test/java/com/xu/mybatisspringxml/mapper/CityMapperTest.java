@@ -1,5 +1,7 @@
 package com.xu.mybatisspringxml.mapper;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xu.mybatisspringxml.pojo.City;
 import com.xu.mybatisspringxml.pojo.CityVO;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -25,6 +28,9 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @Slf4j
 public class CityMapperTest {
+
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     @Autowired
     private CityMapper cityMapper;
 
@@ -113,5 +119,17 @@ public class CityMapperTest {
         cities.forEach(System.out::println);
         String country = cities.get(0).getCountry();
         Assert.isTrue(country != null, country);
+    }
+
+    /**
+     * 多对多映射
+     *
+     * @throws JsonProcessingException
+     */
+    @Test
+    public void test11() throws JsonProcessingException {
+        List<String> strings = Arrays.asList("ZH", "USA");
+        List<List<City>> citys = cityMapper.citys(strings);
+        log.info("citys = {}", objectMapper.writeValueAsString(citys));
     }
 }

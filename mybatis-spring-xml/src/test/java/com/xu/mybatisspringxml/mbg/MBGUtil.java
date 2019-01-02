@@ -20,7 +20,7 @@ public class MBGUtil {
     public static void main(String[] args) throws Exception {
         List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
-        File configFile = new File("D:\\code\\git\\mybatis-spring\\mybatis-spring-xml\\src\\main\\resources\\mbg.xml");
+        File configFile = new File("E:\\code\\git\\mybatis-spring\\mybatis-spring-xml\\src\\main\\resources\\mbg.xml");
         System.out.println(configFile);
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);

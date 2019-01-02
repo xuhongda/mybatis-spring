@@ -5,6 +5,7 @@ import com.xu.mybatisspringxml.pojo.CityExample;
 import java.util.List;
 
 import com.xu.mybatisspringxml.pojo.CityVO;
+import com.xu.mybatisspringxml.pojo.Country;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -44,4 +45,10 @@ public interface CityMapper {
     List<CityVO> getInfoByMap();
 
     List<CityVO> getInfoByType();
+
+    /**
+     * @param countries
+     * @return
+     */
+    List<List<City>> citys(@Param("countries") List<String> countries);
 }

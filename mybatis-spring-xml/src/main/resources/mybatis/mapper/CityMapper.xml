@@ -257,12 +257,12 @@
 
   <!--    List<CityVO> getInfoByType();
 -->
-  <select id="getInfoByMap" resultType="com.xu.mybatisspringxml.pojo.CityVO">
+  <!--<select id="getInfoByMap" resultType="com.xu.mybatisspringxml.pojo.CityVO">
     select c.*,cc.nums as count
     from (select * from mybatis_springboot.city) c
             ,
          (select count(id) as nums from mybatis_springboot.city) cc
-  </select>
+  </select>-->
 
   <!--    List<City> getInfoByMap();
 -->
@@ -271,5 +271,27 @@
     from (select * from mybatis_springboot.city) c
             ,
          (select count(id) as nums from mybatis_springboot.city) cc
+  </select>
+
+  <!--
+  List<List<City>> citys(@Param("countries") List<String> countries);
+  多对多映射
+-->
+  <resultMap id="myMap" type="com.xu.mybatisspringxml.pojo.ResultVO">
+    <collection property="cities" ofType="com.xu.mybatisspringxml.pojo.City">
+      <id column="id" jdbcType="INTEGER" property="id"/>
+      <result column="name" jdbcType="VARCHAR" property="name"/>
+      <result column="state" jdbcType="VARCHAR" property="state"/>
+      <result column="country" jdbcType="VARCHAR" property="country"/>
+    </collection>
+  </resultMap>
+
+  <select id="citys" resultMap="myMap" parameterType="java.util.List">
+    select * from city
+    WHERE country in
+    <foreach item="item" index="index" collection="countries"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
 </mapper>

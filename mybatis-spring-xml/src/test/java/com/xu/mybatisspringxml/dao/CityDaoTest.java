@@ -1,11 +1,8 @@
 package com.xu.mybatisspringxml.dao;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xu.mybatisspringxml.pojo.City;
 import org.apache.ibatis.session.RowBounds;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -25,7 +22,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityDaoTest {
-    Logger log = LoggerFactory.getLogger(Test.class);
+    private Logger log = LoggerFactory.getLogger(Test.class);
     @Autowired
     private CityDao cityDao;
 
@@ -39,8 +36,8 @@ public class CityDaoTest {
      */
     @Test
     public void insertCitys() {
-        List<City> list = new ArrayList<>(99);
-        for (int i = 0; i < 1; i++) {
+        List<City> list = new ArrayList<>(10);
+        for (int i = 0; i < 10; i++) {
             City city = new City();
             city.setName("SZ");
             city.setCountry("ZH");
@@ -48,7 +45,6 @@ public class CityDaoTest {
         }
         int i = cityDao.insertCitys(list);
         log.info("i",i);
-        //   Assertions.assertThat(i).isEqualTo(9999);
     }
 
     @Test
