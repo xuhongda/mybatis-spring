@@ -1,10 +1,8 @@
 package com.xu.mybatisspringxml.mapper;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.xu.mybatisspringxml.pojo.Country;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -15,12 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 /**
  * @author xuhongda on 2019/1/3
