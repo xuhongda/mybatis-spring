@@ -273,28 +273,5 @@
          (select count(id) as nums from mybatis_springboot.city) cc
   </select>
 
-  <!--
-  List<List<City>> citys(@Param("countries") List<String> countries);
-  多对多映射
--->
-  <resultMap id="myMap" type="com.xu.mybatisspringxml.pojo.ResultVO">
-      <!--ofType 指定集合pojo 类型-->
-    <collection property="cities" ofType="com.xu.mybatisspringxml.pojo.City">
-      <id column="id" jdbcType="INTEGER" property="id"/>
-      <result column="name" jdbcType="VARCHAR" property="name"/>
-      <result column="state" jdbcType="VARCHAR" property="state"/>
-      <result column="country" jdbcType="VARCHAR" property="country"/>
-    </collection>
-      <!--这里也可以使用 BastResultMap 替换 ofType-->
-      <!--<collection property="cities" resultMap="BaseResultMap"/>-->
-  </resultMap>
 
-  <select id="citys" resultMap="myMap" parameterType="java.util.List">
-    select * from city
-    WHERE country in
-    <foreach item="item" index="index" collection="countries"
-             open="(" separator="," close=")">
-      #{item}
-    </foreach>
-  </select>
 </mapper>

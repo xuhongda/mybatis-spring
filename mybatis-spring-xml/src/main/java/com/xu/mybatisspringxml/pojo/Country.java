@@ -1,23 +1,23 @@
 package com.xu.mybatisspringxml.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
+
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Country {
+
+
     private Integer id;
 
     private String country;
 
-    public Integer getId() {
-        return id;
-    }
+    List<City> cities;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
-    }
 }

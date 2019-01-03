@@ -46,9 +46,5 @@ public interface CityMapper {
 
     List<CityVO> getInfoByType();
 
-    /**
-     * @param countries
-     * @return
-     */
-    List<List<City>> citys(@Param("countries") List<String> countries);
+
 }

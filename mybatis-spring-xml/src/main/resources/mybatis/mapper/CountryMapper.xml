@@ -140,4 +140,32 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
+
+    <!--
+  List<List<City>> citys(@Param("countries") List<String> countries);
+  多对多映射
+-->
+    <resultMap id="myMap" type="com.xu.mybatisspringxml.pojo.Country">
+        <result column="cou_id" jdbcType="INTEGER" property="id"/>
+        <result column="country" jdbcType="VARCHAR" property="country"/>
+        <!--ofType 指定集合pojo 类型-->
+        <collection property="cities" ofType="com.xu.mybatisspringxml.pojo.City">
+            <id column="ci_id" jdbcType="INTEGER" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="state" jdbcType="VARCHAR" property="state"/>
+            <result column="country" jdbcType="VARCHAR" property="country"/>
+        </collection>
+    </resultMap>
+
+    <select id="citys" resultMap="myMap" parameterType="java.util.List">
+        select country.id as cou_id,country.country,city.id as ci_id,city.id,city.name,city.state,city.country from
+        mybatis_springboot.country left join mybatis_springboot.city
+        on city.country = country.country
+        WHERE country.country in
+        <foreach item="item" index="index" collection="countries"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
 </mapper>

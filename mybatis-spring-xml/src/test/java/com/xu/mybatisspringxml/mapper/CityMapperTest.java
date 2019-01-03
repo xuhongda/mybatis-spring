@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.xu.mybatisspringxml.pojo.City;
 import com.xu.mybatisspringxml.pojo.CityVO;
+import com.xu.mybatisspringxml.pojo.Country;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class CityMapperTest {
 
     @Autowired
     private CityMapper cityMapper;
+    @Autowired
+    private CountryMapper countryMapper;
 
     @Test
     public void countByExample() {
@@ -121,15 +124,5 @@ public class CityMapperTest {
         Assert.isTrue(country != null, country);
     }
 
-    /**
-     * 多对多映射
-     *
-     * @throws JsonProcessingException
-     */
-    @Test
-    public void test11() throws JsonProcessingException {
-        List<String> strings = Arrays.asList("ZH", "USA");
-        List<List<City>> citys = cityMapper.citys(strings);
-        log.info("citys = {}", objectMapper.writeValueAsString(citys));
-    }
+
 }

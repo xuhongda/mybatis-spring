@@ -21,4 +21,10 @@ public interface CountryMapper {
     int updateByExampleSelective(@Param("record") Country record, @Param("example") CountryExample example);
 
     int updateByExample(@Param("record") Country record, @Param("example") CountryExample example);
+
+    /**
+     * @param countries
+     * @return
+     */
+    List<Country> citys(@Param("countries") List<String> countries);
 }
