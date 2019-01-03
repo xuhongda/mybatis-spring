@@ -1,6 +1,7 @@
 package com.xu.mybatisspringxml.mapper;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -43,9 +44,9 @@ public class CountryMapperTest {
     public void test11() throws IOException {
         List<String> strings = Arrays.asList("ZH", "USA");
         List<Country> countries = countryMapper.citys(strings);
-        Object o = JSON.toJSON(countries);
-        log.info("{}", o);
         StringWriter stringWriter = new StringWriter();
+        //指定包含
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         //使用 writeValue 生成指定
         objectMapper.writeValue(stringWriter, countries);
         objectMapper.writeValue(new File("countries.json"), countries);
