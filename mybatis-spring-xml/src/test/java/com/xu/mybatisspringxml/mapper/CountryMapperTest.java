@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,11 +40,16 @@ public class CountryMapperTest {
      * @throws JsonProcessingException
      */
     @Test
-    public void test11() throws JsonProcessingException {
+    public void test11() throws IOException {
         List<String> strings = Arrays.asList("ZH", "USA");
         List<Country> countries = countryMapper.citys(strings);
         Object o = JSON.toJSON(countries);
         log.info("{}", o);
-        log.info("citys = {}", objectMapper.writeValueAsString(countries));
+        StringWriter stringWriter = new StringWriter();
+        //使用 writeValue 生成指定
+        objectMapper.writeValue(stringWriter, countries);
+        objectMapper.writeValue(new File("countries.json"), countries);
+        String s = stringWriter.toString();
+        log.info("citys = {}", s);
     }
 }
