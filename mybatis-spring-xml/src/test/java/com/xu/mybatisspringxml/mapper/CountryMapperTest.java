@@ -43,6 +43,8 @@ public class CountryMapperTest {
         StringWriter stringWriter = new StringWriter();
         //指定包含
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        String str = objectMapper.writeValueAsString(countries);
+        log.info("str = {}", str);
         //使用 writeValue 生成指定
         objectMapper.writeValue(stringWriter, countries);
         objectMapper.writeValue(new File("countries.json"), countries);
