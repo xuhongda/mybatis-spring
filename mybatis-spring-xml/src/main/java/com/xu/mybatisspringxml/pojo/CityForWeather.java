@@ -1,4 +1,4 @@
-package pojo;
+package com.xu.mybatisspringxml.pojo;
 
 public class CityForWeather {
     private String cityId;

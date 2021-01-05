@@ -2,6 +2,7 @@ package com.xu.mybatisspringxml.dao;
 
 import com.github.pagehelper.PageInfo;
 import com.xu.mybatisspringxml.pojo.City;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +20,11 @@ import java.util.List;
  * com.xu.mybatisspringxml.dao
  * mybatis-spring
  */
+@Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityDaoTest {
-    private Logger log = LoggerFactory.getLogger(Test.class);
+
     @Autowired
     private CityDao cityDao;
 
@@ -69,7 +71,8 @@ public class CityDaoTest {
         RowBounds rowBounds = new RowBounds(1, 15);
         List<City> cities = cityDao.selectCitys(city, rowBounds);
         //List<City> cities = cityDao.selectCitysNoPage(city);
-        PageInfo<City> pageInfo = new PageInfo(cities, 7);
+        PageInfo<City> pageInfo = new PageInfo<>(cities, 7);
+        log.info("pageInfo = {}",pageInfo);
         long l1 = System.currentTimeMillis();
         long ll = l1 - l;
         System.out.println("time===>>" + ll);

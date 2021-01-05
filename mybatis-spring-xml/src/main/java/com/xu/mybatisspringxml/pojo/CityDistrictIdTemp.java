@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 package pojo;
+=======
+package com.xu.mybatisspringxml.pojo;
 
 public class CityDistrictIdTemp {
     private Integer areacode;

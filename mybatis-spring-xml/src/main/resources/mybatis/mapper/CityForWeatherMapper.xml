@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.mybatisspringxml.mapper.CityForWeatherMapper">
+  <resultMap id="BaseResultMap" type="com.xu.mybatisspringxml.pojo.CityForWeather">
+    <id column="CITY_ID" jdbcType="VARCHAR" property="cityId" />
+    <result column="CITY_NUM" jdbcType="VARCHAR" property="cityNum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CITY_ID, CITY_NUM
+  </sql>
+  <select id="selectByExample" parameterType="com.xu.mybatisspringxml.pojo.CityForWeatherExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from city_for_weather
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from city_for_weather
+    where CITY_ID = #{cityId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from city_for_weather
+    where CITY_ID = #{cityId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xu.mybatisspringxml.pojo.CityForWeatherExample">
+    delete from city_for_weather
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xu.mybatisspringxml.pojo.CityForWeather">
+    insert into city_for_weather (CITY_ID, CITY_NUM)
+    values (#{cityId,jdbcType=VARCHAR}, #{cityNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xu.mybatisspringxml.pojo.CityForWeather">
+    insert into city_for_weather
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cityId != null">
+        CITY_ID,
+      </if>
+      <if test="cityNum != null">
+        CITY_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityNum != null">
+        #{cityNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xu.mybatisspringxml.pojo.CityForWeatherExample" resultType="java.lang.Long">
+    select count(*) from city_for_weather
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update city_for_weather
+    <set>
+      <if test="record.cityId != null">
+        CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityNum != null">
+        CITY_NUM = #{record.cityNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update city_for_weather
+    set CITY_ID = #{record.cityId,jdbcType=VARCHAR},
+      CITY_NUM = #{record.cityNum,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xu.mybatisspringxml.pojo.CityForWeather">
+    update city_for_weather
+    <set>
+      <if test="cityNum != null">
+        CITY_NUM = #{cityNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CITY_ID = #{cityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xu.mybatisspringxml.pojo.CityForWeather">
+    update city_for_weather
+    set CITY_NUM = #{cityNum,jdbcType=VARCHAR}
+    where CITY_ID = #{cityId,jdbcType=VARCHAR}
+  </update>
+</mapper>
