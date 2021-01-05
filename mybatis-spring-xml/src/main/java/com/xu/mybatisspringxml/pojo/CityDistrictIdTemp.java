@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-package pojo;
-=======
+
 package com.xu.mybatisspringxml.pojo;
 
 public class CityDistrictIdTemp {
