@@ -15,11 +15,19 @@
         </commentGenerator>
 
         <!-- 配置数据库连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mybatis_springboot"
                         userId="root"
                         password="7777">
+        </jdbcConnection>-->
+
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.200.30:3306/iov?Unicode=true&amp;characterEncoding=UTF-8"
+                        userId="root"
+                        password="123456">
         </jdbcConnection>
+
 
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
@@ -28,21 +36,21 @@
         <!-- javaModelGenerator:指定javaBean生成的地方 -->
         <javaModelGenerator
                 targetPackage="com.xu.mybatisspringxml.pojo"
-                targetProject="E:\code\git\mybatis-spring\mybatis-spring-xml\src\main\java">
+                targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!--sqlMapGenerator：指定生成xml的地方  -->
         <sqlMapGenerator targetPackage="mybatis.mapper"
-                         targetProject="E:\code\git\mybatis-spring\mybatis-spring-xml\src\main\resources">
+                         targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- javaClientGenerator:指定dao接口生成的地方 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.xu.mybatisspringxml.mapper"
-                             targetProject="E:\code\git\mybatis-spring\mybatis-spring-xml\src\main\java">
+                             targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -51,7 +59,10 @@
             DO：Database Object（数据库映射的对象）
             VO：【View Object】【Value Object】（封装给页面需要显示的数据）
          -->
-        <table tableName="country"/>
+
+
+        <table tableName="vehicle_alarm_msg"/>
+       <!-- <table tableName="country"/>-->
        <!-- <table tableName="scw_name"></table>-->
        <!-- <table tableName="t_test"></table>
         <table tableName="t_token"></table>-->

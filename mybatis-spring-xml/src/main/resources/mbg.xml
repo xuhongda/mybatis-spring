@@ -36,21 +36,21 @@
         <!-- javaModelGenerator:指定javaBean生成的地方 -->
         <javaModelGenerator
                 targetPackage="com.xu.mybatisspringxml.pojo"
-                targetProject="D:\xucode\dina\mybatis\mybatis-spring-xml\src\main\java">
+                targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!--sqlMapGenerator：指定生成xml的地方  -->
         <sqlMapGenerator targetPackage="mybatis.mapper"
-                         targetProject="D:\xucode\dina\mybatis\mybatis-spring-xml\src\main\resources">
+                         targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- javaClientGenerator:指定dao接口生成的地方 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.xu.mybatisspringxml.mapper"
-                             targetProject="D:\xucode\dina\mybatis\mybatis-spring-xml\src\main\java">
+                             targetProject="D:\xucode\my\mybatis-spring\mybatis-spring-xml\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -60,8 +60,8 @@
             VO：【View Object】【Value Object】（封装给页面需要显示的数据）
          -->
 
-        <table tableName="city_district_id_temp"/>
-        <table tableName="city_for_weather"/>
+
+        <table tableName="vehicle_alarm_msg"/>
        <!-- <table tableName="country"/>-->
        <!-- <table tableName="scw_name"></table>-->
        <!-- <table tableName="t_test"></table>
