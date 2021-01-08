@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.mybatisspringxml.mapper.TCorpCustAlarmCfgMapper">
+  <resultMap id="BaseResultMap" type="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfg">
+    <id column="rec_id" jdbcType="VARCHAR" property="recId" />
+    <result column="corp_id" jdbcType="VARCHAR" property="corpId" />
+    <result column="castrol_vehicle_usage" jdbcType="INTEGER" property="castrolVehicleUsage" />
+    <result column="alarm_prop_key" jdbcType="VARCHAR" property="alarmPropKey" />
+    <result column="alarm_prop_value" jdbcType="VARCHAR" property="alarmPropValue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    rec_id, corp_id, castrol_vehicle_usage, alarm_prop_key, alarm_prop_value, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfgExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_corp_cust_alarm_cfg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_corp_cust_alarm_cfg
+    where rec_id = #{recId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_corp_cust_alarm_cfg
+    where rec_id = #{recId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfgExample">
+    delete from t_corp_cust_alarm_cfg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfg">
+    insert into t_corp_cust_alarm_cfg (rec_id, corp_id, castrol_vehicle_usage, 
+      alarm_prop_key, alarm_prop_value, remark
+      )
+    values (#{recId,jdbcType=VARCHAR}, #{corpId,jdbcType=VARCHAR}, #{castrolVehicleUsage,jdbcType=INTEGER}, 
+      #{alarmPropKey,jdbcType=VARCHAR}, #{alarmPropValue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfg">
+    insert into t_corp_cust_alarm_cfg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recId != null">
+        rec_id,
+      </if>
+      <if test="corpId != null">
+        corp_id,
+      </if>
+      <if test="castrolVehicleUsage != null">
+        castrol_vehicle_usage,
+      </if>
+      <if test="alarmPropKey != null">
+        alarm_prop_key,
+      </if>
+      <if test="alarmPropValue != null">
+        alarm_prop_value,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recId != null">
+        #{recId,jdbcType=VARCHAR},
+      </if>
+      <if test="corpId != null">
+        #{corpId,jdbcType=VARCHAR},
+      </if>
+      <if test="castrolVehicleUsage != null">
+        #{castrolVehicleUsage,jdbcType=INTEGER},
+      </if>
+      <if test="alarmPropKey != null">
+        #{alarmPropKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPropValue != null">
+        #{alarmPropValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfgExample" resultType="java.lang.Long">
+    select count(*) from t_corp_cust_alarm_cfg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_corp_cust_alarm_cfg
+    <set>
+      <if test="record.recId != null">
+        rec_id = #{record.recId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpId != null">
+        corp_id = #{record.corpId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.castrolVehicleUsage != null">
+        castrol_vehicle_usage = #{record.castrolVehicleUsage,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmPropKey != null">
+        alarm_prop_key = #{record.alarmPropKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPropValue != null">
+        alarm_prop_value = #{record.alarmPropValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_corp_cust_alarm_cfg
+    set rec_id = #{record.recId,jdbcType=VARCHAR},
+      corp_id = #{record.corpId,jdbcType=VARCHAR},
+      castrol_vehicle_usage = #{record.castrolVehicleUsage,jdbcType=INTEGER},
+      alarm_prop_key = #{record.alarmPropKey,jdbcType=VARCHAR},
+      alarm_prop_value = #{record.alarmPropValue,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfg">
+    update t_corp_cust_alarm_cfg
+    <set>
+      <if test="corpId != null">
+        corp_id = #{corpId,jdbcType=VARCHAR},
+      </if>
+      <if test="castrolVehicleUsage != null">
+        castrol_vehicle_usage = #{castrolVehicleUsage,jdbcType=INTEGER},
+      </if>
+      <if test="alarmPropKey != null">
+        alarm_prop_key = #{alarmPropKey,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPropValue != null">
+        alarm_prop_value = #{alarmPropValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xu.mybatisspringxml.pojo.TCorpCustAlarmCfg">
+    update t_corp_cust_alarm_cfg
+    set corp_id = #{corpId,jdbcType=VARCHAR},
+      castrol_vehicle_usage = #{castrolVehicleUsage,jdbcType=INTEGER},
+      alarm_prop_key = #{alarmPropKey,jdbcType=VARCHAR},
+      alarm_prop_value = #{alarmPropValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where rec_id = #{recId,jdbcType=VARCHAR}
+  </update>
+</mapper>
